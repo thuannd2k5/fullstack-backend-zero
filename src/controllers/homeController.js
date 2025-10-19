@@ -1,7 +1,12 @@
 const connection = require("../config/database");
+const { getAllUser } = require("../services/CRUDService");
 
-const HomeController = (req, res) => {
-    return res.render("home")
+const HomeController = async (req, res) => {
+    const results = await getAllUser();
+    console.log("results:", results)
+    return res.render("home", {
+        listUsers: results
+    })
 
 }
 
