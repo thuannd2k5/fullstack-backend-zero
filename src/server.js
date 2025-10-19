@@ -10,6 +10,10 @@ const hostname = process.env.HOST_NAME;
 //config view engine
 configViewEngine(app);
 
+//config get input form
+app.use(express.json()) // for json
+app.use(express.urlencoded({ extended: true })) // for form data
+
 //khai báo routes
 app.use("/", webRoutes);
 
