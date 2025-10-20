@@ -34,6 +34,13 @@ const getCreatePage = (req, res) => {
     res.render('create')
 }
 
+
+const getUpdatePage = (req, res) => {
+    res.render('edit')
+}
+
+
+
 module.exports = {
-    HomeController, postCreateUser, getCreatePage
+    HomeController, postCreateUser, getCreatePage, getUpdatePage
 }

@@ -39,22 +39,35 @@
             <h1>List Users :</h1>
         </div>
         <table>
-            <%=JSON.stringify(listUsers)%>
-                <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>City</th>
-                </tr>
+
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Action</th>
+            </tr>
+
+            <% listUsers.forEach(function(user) { %>
                 <tr>
                     <td>
-                        1
+                        <%= user.id %>
                     </td>
-                    <td>Griffin</td>
-                    <td>$100</td>
-                    <td>$100</td>
+                    <td>
+                        <%= user.email %>
+                    </td>
+                    <td>
+                        <%=user.name %>
+                    </td>
+                    <td>
+                        <%= user.city %>
+                    </td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
                 </tr>
-
+                <% }); %>
         </table>
     </div>
 </body>
