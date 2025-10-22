@@ -8,6 +8,22 @@ const getAllUser = async () => {
 
 }
 
+const getUserById = async (userId) => {
+    let [results, fields] = await connection.query('select * from Users where id = ?', [userId]);
+    console.log("result:", results)
+    return results[0];
+}
+
+const updateUserById = async (email, name, city, userId) => {
+    let [results, fields] = await connection.query(
+        `UPDATE Users 
+        SET email = ? , name = ? , city =? 
+        WHERE id = ?`,
+        [email, name, city, userId],
+    );
+
+}
+
 module.exports = {
-    getAllUser
+    getAllUser, getUserById, updateUserById
 }
