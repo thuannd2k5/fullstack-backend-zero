@@ -43,4 +43,14 @@ const putUpdateUsersApi = async (req, res) => {
 
 }
 
-module.exports = { getUsersApi, postCreateUsersApi, putUpdateUsersApi }
+
+const deleteUserApi = async (req, res) => {
+    const userId = req.body.id;
+    // await getDeleteUserById(userId);
+    let result = await User.deleteOne({ _id: userId });
+    return res.status(200).json({
+        errorCode: 0,
+        data: result
+    })
+}
+module.exports = { getUsersApi, postCreateUsersApi, putUpdateUsersApi, deleteUserApi }
