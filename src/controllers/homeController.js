@@ -32,7 +32,8 @@ const getCreatePage = (req, res) => {
 
 const getUpdatePage = async (req, res) => {
     const userId = req.params.id;
-    const user = await getUserById(userId);
+    // const user = await getUserById(userId);
+    const user = await User.findById(userId).exec();
     res.render('edit', { user: user })
 }
 
@@ -43,7 +44,8 @@ const postUpdateUser = async (req, res) => {
     let name = req.body.name;
     let city = req.body.city;
 
-    const updateUser = await updateUserById(email, name, city, userId);
+    // const updateUser = await updateUserById(email, name, city, userId);
+    await User.updateOne({ _id: userId }, { email: email, name: name, city: city });
     res.redirect("/")
 }
 
