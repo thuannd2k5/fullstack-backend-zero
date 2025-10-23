@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
+const APIRoutes = require('./routes/api');
 const connection = require('./config/database');
 
 const app = express()
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true })) // for form data
 
 //khai báo routes
 app.use("/", webRoutes);
+app.use("/v1/api", APIRoutes);
 
 (async () => {
     try {
