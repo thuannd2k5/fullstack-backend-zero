@@ -3,8 +3,6 @@ const express = require('express')
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database');
-const { default: mongoose } = require('mongoose');
-const Kitten = require('./models/Kitten');
 
 const app = express()
 const port = process.env.PORT || 8888;
@@ -19,9 +17,6 @@ app.use(express.urlencoded({ extended: true })) // for form data
 
 //khai báo routes
 app.use("/", webRoutes);
-
-const cat = new Kitten({ name: 'model' });
-cat.save();
 
 (async () => {
     try {
