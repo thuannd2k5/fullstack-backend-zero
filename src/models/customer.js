@@ -10,7 +10,9 @@ const customerSchema = new mongoose.Schema({
     email: String,
     image: String,
     description: String,
-});
+},
+    { timestamps: true }
+);
 
 const Customer = mongoose.model('customer', customerSchema);
 
