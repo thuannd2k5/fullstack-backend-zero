@@ -1,4 +1,4 @@
-const { createCustomerService, createArrayCustomerService, getAllCustomerService } = require("../services/customerService");
+const { createCustomerService, createArrayCustomerService, getAllCustomerService, putUpdateCustomerService } = require("../services/customerService");
 const { uploadSingleFile } = require("../services/fileService");
 
 module.exports = {
@@ -50,6 +50,15 @@ module.exports = {
         return res.status(200).json({
             errorCode: 0,
             data: result
+        })
+    },
+    putUpdateCustomerApi: async (req, res) => {
+        let { id, name, email, address } = req.body;
+
+        let customer = await putUpdateCustomerService(id, name, email, address);
+        return res.status(200).json({
+            errorCode: 0,
+            data: customer
         })
     }
 }
