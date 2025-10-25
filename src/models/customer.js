@@ -13,7 +13,14 @@ const customerSchema = new mongoose.Schema({
     image: String,
     description: String,
 },
-    { timestamps: true }
+    {
+        timestamps: true,//createAt, updateAt
+        // statics: {
+        //     findByThuan(name) {
+        //         return this.find({ name: new RegExp(name, 'i') });
+        //     }
+        // }
+    }
 );
 
 //override all methods
