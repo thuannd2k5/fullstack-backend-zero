@@ -19,6 +19,16 @@ const createProjectService = async (data) => {
 
         return result
     }
+    if (data.type === "REMOVE-USERS") {
+        let myProject = await Project.findById(data.projectId).exec();
+
+        for (let i = 0; i < data.userArr.length; i++) {
+            myProject.userInfo.pull(data.userArr[i]);
+        }
+        let result = await myProject.save();
+        console.log(myProject);
+        return result
+    }
     return null;
 }
 
@@ -36,6 +46,26 @@ const getAllProjectService = async (queryString) => {
     return result
 }
 
+const putUpdateProjectService = async (id, name, endDate, description) => {
+    try {
+        let result = await Project.updateOne({ id }, { id, name, endDate, description });
+        return result;
+    } catch (error) {
+        console.log("error:", error);
+        return null;
+    }
+}
+
+const deleteProjectService = async (id) => {
+    try {
+        let result = await Project.deleteOne({ id });
+        return result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 module.exports = {
-    createProjectService, getAllProjectService
+    createProjectService, getAllProjectService, putUpdateProjectService, deleteProjectService
 }
