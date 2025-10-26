@@ -33,6 +33,18 @@ const updateTaskService = async (id, name, description, status, endDate) => {
     }
 }
 
+const deleteTaskService = async (id) => {
+    try {
+        const result = await Task.deleteOne({ _id: id });
+        return result;
+    } catch (error) {
+        console.log("error:", error);
+        return null;
+    }
+}
+
+
+
 module.exports = {
-    createTaskService, getAllTaskService, updateTaskService
+    createTaskService, getAllTaskService, updateTaskService, deleteTaskService
 }
