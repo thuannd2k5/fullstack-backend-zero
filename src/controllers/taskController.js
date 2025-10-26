@@ -12,7 +12,7 @@ const postCreateTaskApi = async (req, res) => {
 }
 
 const getAllTaskApi = async (req, res) => {
-    const result = await getAllTaskService();
+    const result = await getAllTaskService(req.query);
     return res.status(200).json(
         {
             EC: 0,

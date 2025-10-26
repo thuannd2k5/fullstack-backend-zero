@@ -1,4 +1,6 @@
 const Task = require("../models/task");
+const aqp = require('api-query-params');
+
 
 const createTaskService = async (data) => {
     if (data.type === "EMPTY-TASK") {
@@ -8,9 +10,17 @@ const createTaskService = async (data) => {
 }
 
 
-const getAllTaskService = async () => {
-    let result = await Task.find({});
-    return result;
+const getAllTaskService = async (queryString) => {
+    const page = queryString.page;
+
+    const { filter, limit } = aqp(queryString);
+    delete filter.page;
+    let offset = (page - 1) * limit;
+    result = await Task.find(filter)
+        .skip(offset)
+        .limit(limit)
+        .exec();
+    return result
 }
 
 module.exports = {
