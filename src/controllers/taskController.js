@@ -22,8 +22,7 @@ const getAllTaskApi = async (req, res) => {
 }
 
 const putUpdateTaskApi = async (req, res) => {
-    const { id, name, description, status, endDate } = req.body;
-    const result = await updateTaskService(id, name, description, status, endDate);
+    const result = await updateTaskService(req.body);
     return res.status(200).json(
         {
             EC: 0,

@@ -23,9 +23,9 @@ const getAllTaskService = async (queryString) => {
     return result
 }
 
-const updateTaskService = async (id, name, description, status, endDate) => {
+const updateTaskService = async (data) => {
     try {
-        const result = await Task.updateOne({ _id: id }, { name, description, status, endDate });
+        const result = await Task.updateOne({ _id: data.id }, { ...data });
         return result;
     } catch (error) {
         console.log("error:", error);
