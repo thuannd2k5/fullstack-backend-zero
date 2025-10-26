@@ -7,6 +7,12 @@ const createTaskService = async (data) => {
     }
 }
 
+
+const getAllTaskService = async () => {
+    let result = await Task.find({});
+    return result;
+}
+
 module.exports = {
-    createTaskService
+    createTaskService, getAllTaskService
 }

@@ -1,4 +1,4 @@
-const { createTaskService } = require("../services/taskService");
+const { createTaskService, getAllTaskService } = require("../services/taskService");
 
 
 const postCreateTaskApi = async (req, res) => {
@@ -11,6 +11,17 @@ const postCreateTaskApi = async (req, res) => {
     )
 }
 
+const getAllTaskApi = async (req, res) => {
+    const result = await getAllTaskService();
+    return res.status(200).json(
+        {
+            EC: 0,
+            data: result
+        }
+    )
+}
+
+
 module.exports = {
-    postCreateTaskApi
+    postCreateTaskApi, getAllTaskApi
 }
