@@ -23,6 +23,16 @@ const getAllTaskService = async (queryString) => {
     return result
 }
 
+const updateTaskService = async (id, name, description, status, endDate) => {
+    try {
+        const result = await Task.updateOne({ id }, { name, description, status, endDate });
+        return result;
+    } catch (error) {
+        console.log("error:", error);
+        return null;
+    }
+}
+
 module.exports = {
-    createTaskService, getAllTaskService
+    createTaskService, getAllTaskService, updateTaskService
 }
